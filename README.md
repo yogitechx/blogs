@@ -76,7 +76,7 @@ Blogs are published on:
 
 ## 📢 Connect With Me
 
-- 💼 LinkedIn: *([add your link here](https://www.linkedin.com/in/yogeshsoppa/))*
+- 💼 LinkedIn: *(https://www.linkedin.com/in/yogeshsoppa/)*
 - 🌐 Blog: *(https://theasyncdev.com)*
 - 🧑‍💻 GitHub: *(your profile link)*
 
