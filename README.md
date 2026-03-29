@@ -24,6 +24,7 @@ The goal is simple:
 ## 📂 Repository Structure
 
 blogs/
+
 ├── 2026/
 │ ├── ivr-modernization-aws-connect.md
 
