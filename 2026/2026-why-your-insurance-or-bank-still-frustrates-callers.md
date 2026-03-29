@@ -1,6 +1,6 @@
 ---
 title: "Why Your Insurance or Bank Still Frustrates Callers in 2026 — And How AI Finally Fixes It"
-date: "2026-03-29"
+date: "2026-03-28"
 tags: ["IVR Modernization", "AWS Connect", "GenAI", "Insurance", "Banking"]
 published: true
 ---
@@ -14,7 +14,7 @@ published: true
 **Yogesh Soppa**  
 Product Engineer · Conversational AI · AWS Solutions Architect  
 
-📅 March 29, 2026  
+📅 March 28, 2026  
 
 ---
 
@@ -26,159 +26,108 @@ It's 9:14 PM. You've just been in a car accident. You call your insurance compan
 
 ---
 
-![IVR Problem](../images/images/ivr-problem.png)
+![IVR Problem](../assets/images/ivr-problem.png)
 
 ---
 
 You press 5. Then wait. Then get transferred. Then wait again. Forty-three minutes later, you've spoken to three agents and still haven't filed the claim. You've also decided, quietly, that you're switching insurers.
 
-This isn't a UX problem. It's a **technology debt problem** — and it has a real, deployable solution that's available right now, in 2026. I've spent the last 12 years building these solutions at scale, most recently migrating a major insurance carrier's legacy Avaya IVR to Amazon Connect. Here's everything I know.
+This isn't a UX problem. It's a **technology debt problem**.
 
 ---
 
-![Metrics](../images/images/metrics.png)
+![Metrics](../assets/images/metrics.png)
 
 ---
 
 - **67%** of callers hang up during IVR before reaching an agent  
-- **8 min** average hold time in insurance contact centers  
-- **25%** containment rate improvement with AI chatbots  
-- **20%** reduction in call-handling time  
+- **8 min** average hold time  
+- **25%** improvement with AI chatbots  
+- **20%** reduction in call handling  
 
 ---
 
-## The Real Problem: Legacy IVR Was Built for Phones, Not People
+## The Real Problem
 
-The Interactive Voice Response systems most banks and insurers run today were designed in the early 2000s — or even the late 1990s. They were built on on-premise hardware (Avaya, Genesys, Cisco) with a simple premise: route calls based on keypad input, reduce agent load, cut costs.
-
-It worked, for a while. But caller expectations have changed dramatically.
+Legacy IVR systems were built for keypad input, not human conversations.
 
 ---
 
 ## Legacy IVR vs Modern AI
 
-| Feature | Legacy IVR (Avaya / Genesys) | Modern AI (AWS Connect + Lex) |
-|--------|------------------------------|-------------------------------|
-| Input method | Keypad (DTMF tones) | Natural speech + NLU |
-| Understanding | Keyword matching only | Intent + entity extraction |
-| Self-service rate | 15–25% containment | 40–65% containment |
-| Deployment time | 6–18 months | 6–12 weeks |
-| Integration | Rigid | REST APIs |
-| Analytics | Basic logs | Sentiment |
-| Cost model | CapEx | OpEx |
-| Scalability | Fixed | Auto-scale |
+| Feature | Legacy IVR | Modern AI |
+|--------|------------|-----------|
+| Input | Keypad | Natural speech |
+| Understanding | Keyword | NLP |
+| Self-service | Low | High |
+| Deployment | Slow | Fast |
 
 ---
 
-## Real-World Scenario 1: Insurance Claims
+## Scenario 1: Insurance
 
-![Insurance Flow](../images/insurance-flow.png)
+![Insurance Flow](../assets/images/insurance-flow.png)
 
-**With legacy IVR:**  
-Caller navigates multiple menus, waits on hold, answers repeated questions. Total time: 45 minutes.
-
-**With AWS Connect + Lex + Lambda:**  
-Caller says "I had an accident."  
-System detects intent, authenticates, collects data, and creates claim.
-
-👉 Completed in under 4 minutes.
+Legacy: 45 minutes  
+AI: 4 minutes  
 
 ---
 
 ## Architecture
 
-![Architecture](../images/architecture.png)
+![Architecture](../assets/images/architecture.png)
 
- Caller → Amazon Connect → Amazon Lex v2 → AWS Lambda → Claims API
+```
+Caller → Amazon Connect → Amazon Lex → AWS Lambda → API
+```
 
- 
 ---
 
-## Real-World Scenario 2: Banking
+## Scenario 2: Banking
 
 ![Banking Flow](../assets/images/banking-flow.png)
 
-**With legacy IVR:**  
-Customer navigates menus and waits 18 minutes.
-
-**With GenAI-powered chatbot:**  
-Customer says "My card was declined."  
-System checks API, identifies issue, resolves instantly.
-
-👉 Resolved in 90 seconds.
+Legacy: 18 min wait  
+AI: 90 sec resolution  
 
 ---
 
-## The Technical Stack That Actually Works (In 2026)
+## Tech Stack
 
-### Layer 1 — Telephony & Routing
-Amazon Connect handles routing, queuing, and analytics.
-
-### Layer 2 — NLP
-Amazon Lex v2 + Amazon Bedrock
-
-### Layer 3 — Business Logic
-AWS Lambda integrates APIs.
-
-### Layer 4 — Analytics
-CloudWatch + Contact Lens
+- Amazon Connect  
+- Amazon Lex  
+- AWS Lambda  
+- CloudWatch  
 
 ---
 
-## Example: Lex Intent
+## Example
 
 ```json
 {
   "name": "FileClaim",
-  "sampleUtterances": [
-    "I had an accident",
-    "I want to file a claim",
-    "My car was hit"
-  ],
-  "slots": [
-    { "name": "AccidentDate", "slotType": "AMAZON.Date" },
-    { "name": "AccidentLocation", "slotType": "AMAZON.City" }
-  ]
+  "sampleUtterances": ["I had an accident"]
 }
+```
 
-# The Migration Playbook: Legacy IVR → Amazon Connect
+---
 
-Based on our Avaya → Connect migration at Allstate India, here is the phased approach I recommend:
+## Migration Steps
 
-## 1. Audit & Map (Weeks 1–3)
+1. Audit  
+2. Build  
+3. Test  
+4. Deploy  
+5. Optimize  
 
-Document every call flow in your existing IVR.  
-Record actual call audio.  
-Identify the top 20 call reasons — these are your first automation targets.  
-In most insurance companies, 4 intents cover 60% of call volume: policy inquiry, billing, claims FNOL, and agent lookup.
+---
 
-## 2. Build the MVP on Connect (Weeks 4–8)
+## Final Thought
 
-Set up Amazon Connect in your AWS account.  
-Build the top 3 flows using the visual contact flow editor.  
-Integrate Lex for the voicebot layer.  
-Use Lambda to connect to one or two core APIs.  
-Run in parallel with your legacy IVR — no cutover yet.
+Migration improves CSAT and reduces cost.
 
-## 3. Shadow Traffic Testing (Weeks 9–11)
+---
 
-Route 5–10% of real calls to the new system while keeping agents on standby.  
-Use Contact Lens transcripts to find edge cases.  
-Retrain Lex intents based on actual customer language — this step doubled our intent accuracy.
+## Coming Next
 
-## 4. Gradual Cutover (Weeks 12–16)
-
-Ramp from 10% → 25% → 50% → 100% over 4 weeks.  
-Have rollback ready at each step.  
-Monitor containment rate, CSAT scores, and escalation rates daily.  
-We achieved 20% CSAT improvement by week 14.
-
-## 5. Decommission & Optimize (Week 17+)
-
-Once Connect handles 100% of traffic and is stable, begin decommissioning legacy hardware.  
-Shift budget from CapEx (hardware maintenance) to OpEx (pay-per-minute Connect pricing).  
-Continue weekly intent retraining cycles.
-
-
-
-
+How to build your first Amazon Lex chatbot.
