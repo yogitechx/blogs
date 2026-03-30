@@ -54,10 +54,8 @@ It worked, for a while. But caller expectations have changed dramatically. Peopl
 
 ![](https://cdn.hashnode.com/uploads/covers/69c7af127cf2706510fe6535/48cf1897-5e5c-45df-8f1b-f39c234bebf4.png align="center")
 
-> // Real-world scenario · Insurance · Claims filing
-
-> Problem: A policyholder calls at 11 PM to file an auto claim
-
+> // Real-world scenario · Insurance · Claims filing Problem: A policyholder calls at 11 PM to file an auto claim
+> 
 > **With legacy IVR:** Caller navigates 4 menu levels → gets transferred to claims → waits 22 minutes on hold → agent manually looks up policy → asks 14 standard questions → schedules adjuster for 5 days later. Total time: 45 minutes. Customer satisfaction: low. Churn probability: high.
 
 > **With AWS Connect + Lex + Lambda:** Caller says "I had an accident." The voicebot identifies intent (FNOL — First Notice of Loss), authenticates via phone number match + last 4 of SSN, pulls policy details from the claims API, collects accident details through natural dialogue, pre-populates the claim in the system, and schedules a callback for the next morning — all in under 4 minutes. Agent receives a complete pre-filled case. No hold time.
@@ -69,9 +67,9 @@ This isn’t science fiction — it’s a production-grade system I’ve impleme
 ![](https://cdn.hashnode.com/uploads/covers/69c7af127cf2706510fe6535/35780239-a814-4a30-bff5-c4f8bc305b38.png align="center")
 
 > // Real-world scenario · Banking · Account inquiry + fraud alert
-
+> 
 > Problem: Customer calls to check why a transaction was declined
-
+> 
 > **With legacy IVR:** "Press 1 for balance. Press 2 for recent transactions. Press 3 to report fraud." Customer doesn't know which option applies. Presses 2, hears the last 5 transactions read aloud by a robot voice, still doesn't understand why the transaction failed, presses 0 for agent. Wait time: 18 minutes.
 
 > **With GenAI-powered chatbot (Amazon Lex + Bedrock):** Customer says "My card was declined at the grocery store just now." Bot identifies this as a potential fraud block or limit breach, authenticates the customer, checks the transaction API in real time, sees the card was flagged for an unusual location (customer is travelling), explains this in plain English, and with one voice confirmation, removes the temporary block. Resolved in 90 seconds. Zero agent needed.
